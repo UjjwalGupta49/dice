@@ -1,9 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import Link from 'next/link'
 import { FaHeart } from 'react-icons/fa' // Icon for 'like' action
 
 const MovieCard = ({ movie }) => {
+  const [liked, setLiked] = useState(false);
   const posterUrl = `https://www.themoviedb.org/t/p/w440_and_h660_face${movie.poster_path}`
+
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
 
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-xl transition duration-300 ease-in-out transform hover:scale-105 relative group cursor-pointer">
@@ -21,16 +26,16 @@ const MovieCard = ({ movie }) => {
         </p>
         <p className="text-blue-400 text-sm">IMDb {movie.vote_average}</p>
       </div>
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out bg-gradient-to-b from-black via-black to-transparent rounded-lg">
-        <div className="p-6 text-center">
-          <p className="text-white leading-relaxed text-md md:text-lg px-4 line-clamp-3">{movie.overview}</p>
-        </div>
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out bg-black bg-opacity-80 rounded-lg">
+        <p className="text-white text-sm px-4 text-center">{movie.overview}</p>
       </div>
-      <button className="absolute top-4 right-4 text-blue-400 hover:text-blue-500 transition duration-300">
+      <button
+        onClick={toggleLike}
+        className={`absolute top-4 right-4 transition duration-300 ${liked ? 'text-red-500 scale-125' : 'text-blue-400'}`}>
         <FaHeart className="text-2xl" />
       </button>
     </div>
-  )
+  );
 }
 
 const MovieRecommendationScreen = ({ userMovies }) => {
@@ -38,9 +43,9 @@ const MovieRecommendationScreen = ({ userMovies }) => {
     <div className="flex flex-col items-center bg-gradient-to-br from-purple-500 via-blue-500 to-purple-800 min-h-screen p-10">
       {/* Move the logo to the top of the page on mobile */}
       <div className="absolute top-4 left-4 md:self-start">
-        <a href="/">
+        <Link href="/">
           <img src="logo.png" alt="Dice Logo" className="h-12 md:h-16" />
-        </a>
+        </Link>
       </div>
       {/* Adjust the header margin for mobile */}
       <h1 className="mt-16 md:mt-0 text-4xl font-bold text-white mb-10">
