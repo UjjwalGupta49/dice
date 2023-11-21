@@ -35,7 +35,6 @@ const QuestionScreen = ({ questionId, updateQuizResponse, onNextQuestion, isLast
       <div className="flex justify-between p-4 items-center">
         <img src="./logo.png" alt="Dice Logo" className="h-10" />
         <div className="flex space-x-4">
-          <a href="/how-it-works" className="text-blue-400">How it works?</a>
           <a href="/features" className="text-blue-400">Features</a>
           <a href="/about-us" className="text-blue-400">About us</a>
           <FaUser className="text-blue-400 text-2xl" />
@@ -49,12 +48,11 @@ const QuestionScreen = ({ questionId, updateQuizResponse, onNextQuestion, isLast
           {Object.entries(questionData.options).map(([optionKey, option]) => (
             <button key={optionKey} onClick={() => handleOptionClick(optionKey)} className={`group focus:outline-none ${selectedOption === optionKey ? 'ring-2 ring-purple-500' : ''}`}>
               <img src={option.image} alt={option.short_text} className="rounded-lg" />
-              <p className="mt-2 text-center text-sm font-semibold">{option.short_text}</p>
+              <p className="mt-2 text-center text-base font-semibold leading-relaxed">{option.short_text}</p> {/* Updated font size and line height */}
             </button>
           ))}
         </div>
       </div>
-
       {/* Bottom Navigation */}
       <div className="mt-auto flex justify-between items-center p-4">
         <button className="flex items-center text-blue-400" onClick={handleNextOrSubmit}>
