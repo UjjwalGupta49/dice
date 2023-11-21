@@ -7,8 +7,8 @@ from flask_cors import CORS  # Import CORS
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-app.config['ENV'] = 'development'
-app.config['DEBUG'] = True
+app.config['ENV'] = 'production'
+app.config['DEBUG'] = False
 
 # Step 2: Define a global variable to hold the dictionary
 quiz_structure = {}
@@ -74,6 +74,6 @@ def get_movies(user_genres):
 
 if __name__ == '__main__':
     load_quiz_structure()
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
 
 # get request - http://127.0.0.1:5000/quiz?quiz={"QID101":"b","QID102":"b","QID103":"b"}
