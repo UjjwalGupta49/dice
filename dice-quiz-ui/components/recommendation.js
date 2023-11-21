@@ -26,12 +26,15 @@ const MovieCard = ({ movie }) => {
         </p>
         <p className="text-blue-400 text-sm">IMDb {movie.vote_average}</p>
       </div>
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out bg-black bg-opacity-80 rounded-lg">
-        <p className="text-white text-sm px-4 text-center">{movie.overview}</p>
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out bg-gradient-to-b from-black via-black to-transparent rounded-lg">
+        <div className="p-6 text-center">
+          <p className="text-white leading-relaxed text-md md:text-lg px-4 line-clamp-3">{movie.overview}</p>
+        </div>
       </div>
-      <button
+      <button 
         onClick={toggleLike}
-        className={`absolute top-4 right-4 transition duration-300 ${liked ? 'text-red-500 scale-125' : 'text-blue-400'}`}>
+        className={`absolute top-4 right-4 transition duration-300 ${liked ? 'text-red-500 scale-125' : 'text-blue-400 hover:text-blue-500'}`}
+      >
         <FaHeart className="text-2xl" />
       </button>
     </div>

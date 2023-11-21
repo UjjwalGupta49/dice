@@ -32,7 +32,7 @@ const Quiz = () => {
   // Function to handle the submission of the quiz
   const handleSubmit = async () => {
     try {
-      const response = await axios.get(`https://dice-movies.vercel.app/quiz?quiz=${JSON.stringify(quizResponses)}`);
+      const response = await axios.get(`https://dice-server-xem0.onrender.com/quiz?quiz=${JSON.stringify(quizResponses)}`);
       console.log('Server response:', response.data);
       // Serialize userMovies data to a JSON string
       const userMoviesString = JSON.stringify(response.data.user_movies);
